@@ -4,26 +4,40 @@
             <h1>Let's shaer</h1>
             <p>精品博客</p>
             <div class="btns">
-                <el-button>立即登錄</el-button>
-                <el-button>註冊賬號</el-button>
+                <el-button>立即登录</el-button>
+                <el-button>注册账号</el-button>
             </div>
         </template>
         <template v-if="isLogin">
             <h1>Let's shaer</h1>
             <p>精品博客</p>
             <i class="edit el-icon-edit"></i>
-            <img class="avatar" src="../assets/logo.png" alt="">
+            <img class="avatar" :src="user.username" :alt="user.username" :title="user.username">
         </template>
         
     </header>
 </template>
 
 <script>
+import {mapActions , mapGetters} from 'vuex'
+
+import auth from '../api/auth'
+window.auth = auth
+
 export default {
     data(){
-        return{
-            isLogin : true
-        }
+        return{}
+    },
+    computed:{
+        ...mapGetters([
+            'isLogin',
+            'user'
+        ])
+    },
+    methods:{
+        ...mapActions([
+            'chechLogin'
+        ])
     }
 }
 </script>
@@ -73,7 +87,7 @@ header.login{
     .avatar{
         width: 40px;
         height: 40px;
-        border:1px solid #fff;
+        border:1px solid grey;
         border-radius: 50%;
         margin-left: 15px;
     }

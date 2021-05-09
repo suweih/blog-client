@@ -9,10 +9,8 @@
 </template>
 
 <script>
-
 import Header from '@/components/header'
 import Footer from '@/components/footer'
-
 
 export default {
   name: 'App',
@@ -20,7 +18,6 @@ export default {
     Header , 
     Footer
   }
-    
 }
 </script>
 
@@ -59,5 +56,4 @@ export default {
     padding-right: 10px;
   }
 }
-
 </style>
