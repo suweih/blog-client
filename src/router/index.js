@@ -100,7 +100,7 @@ const router =  new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    store.dispatch('checkLogin').then(isLogin=>{
+    store.dispatch('checkLogin').then(isLogin=>{ //成功
       if (!isLogin) {
         next({
           path: '/login',
@@ -109,6 +109,11 @@ router.beforeEach((to, from, next) => {
       } else {
         next()
       }    
+    },() =>{   //失败
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
     })
   } else {
     next() // 确保一定要调用 next()
